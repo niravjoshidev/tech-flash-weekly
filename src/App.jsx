@@ -82,8 +82,8 @@ function TerminalLog({ logs, isRunning }) {
         <div key={i} style={{
           fontSize: ".68rem", lineHeight: 1.9, letterSpacing: .4,
           color: line.startsWith("❌") ? "#dc2850"
-               : line.startsWith("✅") ? "#50c83c"
-               : "rgba(0,255,180,0.7)",
+            : line.startsWith("✅") ? "#50c83c"
+              : "rgba(0,255,180,0.7)",
         }}>
           {line}
         </div>
@@ -202,7 +202,7 @@ function StoryRow({ story, index }) {
             >
               {/* External link icon */}
               <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
-                <path d="M5.5 1H9v3.5M9 1L4 6M2 2H1v7h7V8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5.5 1H9v3.5M9 1L4 6M2 2H1v7h7V8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               READ ARTICLE
             </a>
@@ -376,7 +376,7 @@ function ApiKeyBanner() {
           : "Your key doesn't look right — it should start with 'sk-ant-'."}
       </div>
       <div style={{ marginTop: 10, fontSize: ".68rem", lineHeight: 1.8, fontFamily: "'Share Tech Mono', monospace", color: "rgba(200,160,0,0.7)" }}>
-        <div>LOCAL DEV → create <span style={{color:"#c8a000"}}>/.env</span> and add:</div>
+        <div>LOCAL DEV → create <span style={{ color: "#c8a000" }}>/.env</span> and add:</div>
         <div style={{
           background: "#000", border: "1px solid rgba(200,160,0,0.2)",
           borderRadius: 3, padding: "6px 10px", margin: "6px 0",
@@ -398,7 +398,7 @@ function ApiKeyBanner() {
         }}
       >
         <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
-          <path d="M5.5 1H9v3.5M9 1L4 6M2 2H1v7h7V8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M5.5 1H9v3.5M9 1L4 6M2 2H1v7h7V8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
         GET YOUR API KEY FROM ANTHROPIC CONSOLE
       </a>
@@ -410,11 +410,11 @@ function ApiKeyBanner() {
 // MAIN APP
 // ─────────────────────────────────────────────
 export default function App() {
-  const [status,   setStatus]   = useState("idle");   // idle | loading | done | error
-  const [stories,  setStories]  = useState([]);
-  const [caption,  setCaption]  = useState("");
-  const [html,     setHtml]     = useState("");
-  const [logs,     setLogs]     = useState([]);
+  const [status, setStatus] = useState("idle");   // idle | loading | done | error
+  const [stories, setStories] = useState([]);
+  const [caption, setCaption] = useState("");
+  const [html, setHtml] = useState("");
+  const [logs, setLogs] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
 
   const addLog = useCallback((msg) => setLogs(prev => [...prev, msg]), []);
@@ -451,7 +451,7 @@ export default function App() {
 
       addLog("🎨 Parsing carousel data...");
       const jsonStr = extractJSON(rawText);
-      const parsed  = JSON.parse(jsonStr);
+      const parsed = JSON.parse(jsonStr);
 
       // Validate required fields
       if (!Array.isArray(parsed.stories) || parsed.stories.length === 0)
@@ -460,7 +460,7 @@ export default function App() {
         throw new Error("Response missing or incomplete 'html' field.");
 
       setStories(parsed.stories);
-      setCaption(parsed.caption  || "");
+      setCaption(parsed.caption || "");
       setHtml(parsed.html);
       addLog("✅ Carousel ready — download and post Monday!");
       setStatus("done");
@@ -480,9 +480,9 @@ export default function App() {
     let url = null;
     try {
       const blob = new Blob([html], { type: "text/html;charset=utf-8" });
-      url  = URL.createObjectURL(blob);
+      url = URL.createObjectURL(blob);
       const a = document.createElement("a");
-      a.href     = url;
+      a.href = url;
       a.download = `tech-flash-weekly-${new Date().toISOString().slice(0, 10)}.html`;
       document.body.appendChild(a);
       a.click();
@@ -493,8 +493,8 @@ export default function App() {
   }, [html]);
 
   const isLoading = status === "loading";
-  const isDone    = status === "done";
-  const isError   = status === "error";
+  const isDone = status === "done";
+  const isError = status === "error";
 
   return (
     <div style={{
@@ -511,9 +511,6 @@ export default function App() {
 
       {/* ── HEADER ── */}
       <header style={{ textAlign: "center", marginBottom: 44 }}>
-        <div style={{ fontSize: ".56rem", letterSpacing: 4, color: "rgba(0,255,180,0.38)", marginBottom: 14, textTransform: "uppercase" }}>
-          // automated_carousel_generator.exe
-        </div>
         <h1 style={{
           fontFamily: "'Orbitron', monospace",
           color: ACCENT,
