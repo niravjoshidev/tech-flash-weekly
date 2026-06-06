@@ -372,8 +372,8 @@ function ApiKeyBanner() {
       </div>
       <div style={{ fontSize: ".7rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.6, fontFamily: "'Inter', sans-serif" }}>
         {isMissing
-          ? "No Anthropic API key found. The generator won't work until you add one."
-          : "Your key doesn't look right — it should start with 'sk-ant-'."}
+          ? "No Google Gemini API key found. The generator won't work until you add one."
+          : "Your key doesn't look right — it should start with 'AIzaSy' or 'AQ'."}
       </div>
       <div style={{ marginTop: 10, fontSize: ".68rem", lineHeight: 1.8, fontFamily: "'Share Tech Mono', monospace", color: "rgba(200,160,0,0.7)" }}>
         <div>LOCAL DEV → create <span style={{ color: "#c8a000" }}>/.env</span> and add:</div>
@@ -382,12 +382,12 @@ function ApiKeyBanner() {
           borderRadius: 3, padding: "6px 10px", margin: "6px 0",
           fontSize: ".66rem", color: "#c8a000", userSelect: "all",
         }}>
-          VITE_ANTHROPIC_API_KEY=sk-ant-your-key-here
+          VITE_GEMINI_API_KEY=AIzaSy-your-key-here
         </div>
         <div>VERCEL → Project Settings → Environment Variables → add the same key</div>
       </div>
       <a
-        href="https://console.anthropic.com/settings/keys"
+        href="https://aistudio.google.com/"
         target="_blank"
         rel="noopener noreferrer"
         style={{
@@ -400,7 +400,7 @@ function ApiKeyBanner() {
         <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
           <path d="M5.5 1H9v3.5M9 1L4 6M2 2H1v7h7V8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-        GET YOUR API KEY FROM ANTHROPIC CONSOLE
+        GET YOUR FREE API KEY FROM GOOGLE AI STUDIO
       </a>
     </div>
   );
@@ -438,8 +438,8 @@ export default function App() {
     const keyStatus = getApiKeyStatus();
     if (keyStatus !== "ok") {
       const msg = keyStatus === "missing"
-        ? "API key missing. Add VITE_ANTHROPIC_API_KEY to your .env file or Vercel environment variables."
-        : "API key looks invalid — it should start with 'sk-ant-'. Please check your key.";
+        ? "API key missing. Add VITE_GEMINI_API_KEY to your .env file or Vercel environment variables."
+        : "API key looks invalid — it should start with 'AIzaSy' or 'AQ'. Please check your key.";
       addLog(`❌ ${msg}`);
       setErrorMsg(msg);
       setStatus("error");
